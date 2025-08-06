@@ -3,8 +3,8 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PatientVisitController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/health-check', function () {
     return response()->json([
@@ -13,9 +13,7 @@ Route::get('/health-check', function () {
     ]);
 })->name('health-check');
 
-Route::get('/', function () {
-    return Inertia::render('welcome');
-})->name('home');
+Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

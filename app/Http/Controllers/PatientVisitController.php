@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Patient;
 use App\Models\PatientVisit;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 
 class PatientVisitController extends Controller
 {
@@ -19,7 +18,7 @@ class PatientVisitController extends Controller
             ->latest('visited_at')
             ->paginate(15);
         
-        return Inertia::render('visits/index', [
+        return view('visits.index', [
             'visits' => $visits
         ]);
     }
@@ -31,7 +30,7 @@ class PatientVisitController extends Controller
     {
         $patients = Patient::orderBy('nama')->get(['id', 'nama']);
         
-        return Inertia::render('visits/create', [
+        return view('visits.create', [
             'patients' => $patients
         ]);
     }
@@ -62,7 +61,7 @@ class PatientVisitController extends Controller
     {
         $visit->load('patient');
         
-        return Inertia::render('visits/show', [
+        return view('visits.show', [
             'visit' => $visit
         ]);
     }

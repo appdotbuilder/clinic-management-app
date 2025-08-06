@@ -7,7 +7,6 @@ use App\Models\Patient;
 use App\Models\PatientVisit;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
@@ -48,7 +47,7 @@ class DashboardController extends Controller
             ];
         }
 
-        return Inertia::render('dashboard', [
+        return view('dashboard', [
             'stats' => $stats,
             'user_role' => $user->role,
         ]);

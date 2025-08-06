@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
 use App\Models\Patient;
-use Inertia\Inertia;
 
 class PatientController extends Controller
 {
@@ -19,7 +18,7 @@ class PatientController extends Controller
             ->latest()
             ->paginate(10);
         
-        return Inertia::render('patients/index', [
+        return view('patients.index', [
             'patients' => $patients
         ]);
     }
@@ -29,7 +28,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return Inertia::render('patients/create');
+        return view('patients.create');
     }
 
     /**
@@ -50,7 +49,7 @@ class PatientController extends Controller
     {
         $patient->load('visits');
         
-        return Inertia::render('patients/show', [
+        return view('patients.show', [
             'patient' => $patient
         ]);
     }
@@ -60,7 +59,7 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        return Inertia::render('patients/edit', [
+        return view('patients.edit', [
             'patient' => $patient
         ]);
     }
